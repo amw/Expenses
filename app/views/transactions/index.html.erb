@@ -7,12 +7,11 @@
 <div class="transactions">
 <table>
 <% @transactions.each do |transaction| %>
-  <tr style="background-color: <%= transaction.category.color %>;">
+  <tr>
     <td><%= transaction.date %></td>
-    <td><%= transaction.description %></td>
-    <td><%= transaction.value %></td>
+    <td><%= category_label(transaction.category) + transaction.description %></td>
+    <td><%= category_style transaction.category, transaction.value %></td>
     <td><%= transaction.amount %></td>
-    <td><%= transaction.category_name %></td>
     <td class="buttonset">
       <a href="<%= url_for edit_transaction_path(transaction) %>"
         class="button">&#x270D;</a>

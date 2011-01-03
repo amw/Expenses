@@ -12,6 +12,11 @@ a.button:visited {
   color: #2779AA;
 }
 
+.category-style {
+  padding: 1px 3px;
+  margin: 1px 5px;
+}
+
 /* jquery ui fixes */
 
 .ui-icon {
