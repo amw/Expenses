@@ -1,5 +1,27 @@
+a, a:visited {
+  color: #333;
+  text-decoration: none;
+}
+
 .content {
   width: 600px;
   margin: auto;
 }
 
+a.button:visited {
+  color: #2779AA;
+}
+
+/* jquery ui fixes */
+
+.ui-icon {
+  display: inline-block;
+}
+
+.ui-button {
+  min-width: 25px;
+}
+
+.ui-button-text {
+  padding: 0px !important;
+}

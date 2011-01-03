@@ -24,7 +24,10 @@ class TransactionsController < ApplicationController
         format.html { redirect_to(transactions_url, :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
-        format.html { render :action => "new" }
+        format.html {
+          @transactions = Transaction.order "date DESC"
+          render :action => "index"
+        }
         format.xml  { render :xml => @transaction.errors, :status => :unprocessable_entity }
       end
     end
