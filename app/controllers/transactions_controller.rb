@@ -1,32 +1,11 @@
 class TransactionsController < ApplicationController
   def index
-    @transactions = Transaction.all
+    @transaction = Transaction.new
+    @transactions = Transaction.order "date DESC"
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @transactions }
-    end
-  end
-
-  # GET /transactions/1
-  # GET /transactions/1.xml
-  def show
-    @transaction = Transaction.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @transaction }
-    end
-  end
-
-  # GET /transactions/new
-  # GET /transactions/new.xml
-  def new
-    @transaction = Transaction.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @transaction }
     end
   end
 
@@ -42,7 +21,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully created.') }
+        format.html { redirect_to(transactions_url, :notice => 'Transaction was successfully created.') }
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html { render :action => "new" }
@@ -58,7 +37,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
-        format.html { redirect_to(@transaction, :notice => 'Transaction was successfully updated.') }
+        format.html { redirect_to(transactions_url, :notice => 'Transaction was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
