@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
+    @transaction.date = Date.today
     @transactions = Transaction.order "date DESC"
 
     respond_to do |format|

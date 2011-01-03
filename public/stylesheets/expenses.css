@@ -12,6 +12,32 @@ a.button:visited {
   color: #2779AA;
 }
 
+/* transaction form */
+#transaction_date {
+  width: 8em;
+}
+
+#transaction_category_name {
+  width: 8em;
+}
+
+#transaction_description {
+  width: 10em;
+}
+
+#transaction_value {
+  padding: 1px 3px;
+  margin: 1px 5px;
+  text-align: right;
+  width: 83px;
+}
+
+#transaction_amount {
+  width: 2em;
+}
+
+/* index */
+
 .category-style, .value-style {
   padding: 1px 3px;
   margin: 1px 5px;
@@ -20,7 +46,7 @@ a.button:visited {
 .value-style {
   display: inline-block;
   text-align: right;
-  min-width: 5em;
+  min-width: 85px;
 }
 
 .expense {
@@ -38,9 +64,17 @@ a.button:visited {
 }
 
 .ui-button {
-  min-width: 25px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  min-width: 28px;
 }
 
 .ui-button-text {
   padding: 0px !important;
+}
+
+input.ui-button {
+  padding: 0px 0px !important;
+  line-height: 1.4;
 }

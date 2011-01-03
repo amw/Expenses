@@ -1,13 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>New expense</h1>
+<table class="transaction">
+
 <%= render 'form' %>
 
-<h1>New income</h1>
-<%= render 'form' %>
-
-<div class="transactions">
-<table>
 <% @transactions.each do |transaction| %>
   <tr>
     <td><%= transaction.date %></td>
@@ -16,11 +12,11 @@
     <td><%= transaction.amount %></td>
     <td class="buttonset">
       <a href="<%= url_for edit_transaction_path(transaction) %>"
-        class="button">&#x270D;</a>
+        class="button" title="Edit transaction">&#x270D;</a>
       <a href="<%= url_for transaction %>" data-confirm="Are you sure?"
-        data-method="delete" rel="nofollow" class="button">&#x2717;</a>
+        data-method="delete" rel="nofollow" class="button"
+        title="Delete transaction">&#x2717;</a>
     </td>
   </tr>
 <% end %>
 </table>
-</div>

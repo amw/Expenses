@@ -1,40 +1,32 @@
-<%= form_for(@transaction) do |f| %>
-  <% if @transaction.errors.any? %>
-    <div id="error_explanation">
+<% if @transaction.errors.any? %>
+  <tr>
+    <td colspan="5" class="error_explanation">
       <ul>
       <% @transaction.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
-    </div>
-  <% end %>
+    </td>
+  </tr>
+<% end %>
 
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_field :value, :value => @transaction.value %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </div>
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= f.text_field :category_name %>
-  </div>
-  <div class="actions">
+<tr>
+  <td>
+    <%= form_for(@transaction) do |f| %>
+    <%= f.text_field :date %>
+  </td>
+  <td><%= f.text_field :category_name %>
+      <%= f.text_field :description %></td>
+  <td><%= f.text_field :value %></td>
+  <td><%= f.text_field :amount %></td>
+  <td class="buttonset">
     <% if @transaction.new_record? %>
       <%= f.hidden_field :type, :value => "expense" %>
     <% else %>
       <%= f.hidden_field :type %>
     <% end %>
-    <%= f.submit %>
-  </div>
-<% end %>
+    <%= f.submit :value => "-", :class => 'button' %>
+    <%= f.submit :value => "+", :class => 'button' %>
+    <% end %>
+  </td>
+</tr>
