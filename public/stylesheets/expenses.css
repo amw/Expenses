@@ -12,9 +12,23 @@ a.button:visited {
   color: #2779AA;
 }
 
-.category-style {
+.category-style, .value-style {
   padding: 1px 3px;
   margin: 1px 5px;
+}
+
+.value-style {
+  display: inline-block;
+  text-align: right;
+  min-width: 5em;
+}
+
+.expense {
+  background-color: #cc3300;
+}
+
+.income {
+  background-color: #8ac777;
 }
 
 /* jquery ui fixes */

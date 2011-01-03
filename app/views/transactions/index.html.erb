@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <h1>New expense</h1>
 <%= render 'form' %>
 
@@ -10,7 +12,7 @@
   <tr>
     <td><%= transaction.date %></td>
     <td><%= category_label(transaction.category) + transaction.description %></td>
-    <td><%= category_style transaction.category, transaction.value %></td>
+    <td><%= value_label transaction %></td>
     <td><%= transaction.amount %></td>
     <td class="buttonset">
       <a href="<%= url_for edit_transaction_path(transaction) %>"
