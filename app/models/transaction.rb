@@ -1,7 +1,9 @@
 class Transaction < ActiveRecord::Base
   class NotZeroValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
-      record.errors[attribute] << "must not be zero" unless value.to_f != 0
+      if value.to_f == 0
+        record.errors[attribute] << "must not be zero"
+      end
     end
   end
 
@@ -17,7 +19,6 @@ class Transaction < ActiveRecord::Base
   validates :type,
               :inclusion => { :in => [Expense,Income] }
   validates :value,
-              :numericality => true,
               :not_zero => true
 
   def category_name=(name)
