@@ -1,6 +1,11 @@
 <h1>Editing transaction</h1>
 
+<p id="notice"><%= notice %></p>
+
+<table class="transactions">
 <%= render 'form' %>
 
-<%= link_to 'Show', @transaction %> |
-<%= link_to 'Back', transactions_path %>
+</table>
+
+<br />
+<%= link_to 'Cancel', transactions_path, :class => 'button' %>
