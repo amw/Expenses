@@ -39,10 +39,11 @@ class TransactionsController < ApplicationController
   # PUT /transactions/1.xml
   def update
     @transaction = Transaction.find(params[:id])
+    @transaction.attributes = params[:transaction]
     update_expense_value
 
     respond_to do |format|
-      if @transaction.update_attributes(params[:transaction])
+      if @transaction.save
         format.html { redirect_to(transactions_url, :notice => 'Transaction was successfully updated.') }
         format.xml  { head :ok }
       else
