@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
     @transaction.date = Date.today
-    @transactions = Transaction.order "date DESC, id DESC"
+    init_index
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
         format.xml  { render :xml => @transaction, :status => :created, :location => @transaction }
       else
         format.html {
-          @transactions = Transaction.order "date DESC"
+          init_index
           render :action => "index"
         }
         format.xml  { render :xml => @transaction.errors, :status => :unprocessable_entity }
@@ -69,5 +69,10 @@ class TransactionsController < ApplicationController
     if params[:commit] != '+'
       params[:transaction][:value] = -params[:transaction][:value].to_f
     end
+  end
+
+  def init_index
+    @transactions = Transaction.order "date DESC, id DESC"
+    @categories = Category.all.select {|c| not c.transactions.empty?}
   end
 end

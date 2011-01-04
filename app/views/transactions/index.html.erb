@@ -4,6 +4,16 @@
   </p>
 <% end %>
 
+<script type="text/javascript">
+  var categories = [
+
+  <% @categories.each do |category| %>
+    <%== "{ 'label': '#{category.name}', 'color': '#{category.color}' }," %>
+  <% end %>
+
+  ];
+</script>
+
 <table class="transactions">
 
 <%= render 'form' %>

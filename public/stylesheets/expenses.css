@@ -102,6 +102,10 @@ input.ui-button {
   line-height: 1.4;
 }
 
+ul.ui-autocomplete {
+  padding: 10px;
+}
+
 /* rails fixes */
 div.field_with_errors {
   display: inline;
