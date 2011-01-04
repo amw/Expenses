@@ -23,8 +23,8 @@
                        :value => @transaction.abs_value %></td>
   <td><%= f.text_field :amount, :placeholder => '1' %></td>
   <td class="buttonset">
-    <%= f.submit :value => "-", :class => "ui-priority-primary" %>
-    <%= f.submit :value => "+" %>
+    <%= f.submit :value => "-", :class => "ui-priority-primary", :id => nil %>
+    <%= f.submit :value => "+", :id => nil %>
     <% end %>
   </td>
 </tr>
