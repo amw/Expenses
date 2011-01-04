@@ -14,11 +14,15 @@ module LabelHelper
   end
 
   def value_label(transaction)
-    ('<span class="' + transaction.type + ' value-style ui-corner-all">' +
-     currency(transaction.abs_value) + '</span>').html_safe
+    value_style(transaction.type, transaction.abs_value)
   end
 
   def currency(value)
     number_to_currency value, :unit => "zł", :format => '%n%u', :precision => 0
+  end
+
+  def value_style(type, value)
+    ('<span class="' + type + ' value-style ui-corner-all">' +
+     currency(value) + '</span>').html_safe
   end
 end
