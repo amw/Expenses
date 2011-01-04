@@ -24,6 +24,22 @@ a.button:visited {
   border-color: #99cc99;
 }
 
+#pie_container {
+  width: 600px;
+  margin: 20px auto;
+}
+
+#pie_container h1 {
+  text-align: center;
+  font-size: 1.3em;
+  margin: 10px 0px;
+}
+
+#pie {
+  width: 100%;
+  height: 350px;
+}
+
 /* category form */
 #edit_category {
   position: relative;

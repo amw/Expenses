@@ -4,16 +4,6 @@
   </p>
 <% end %>
 
-<script type="text/javascript">
-  var categories = [
-
-  <% @categories.each do |category| %>
-    <%== "{ 'label': '#{category.name}', 'color': '#{category.color}' }," %>
-  <% end %>
-
-  ];
-</script>
-
 <% if defined? @category %>
   <div>
     <%= render 'categories/form' %>
@@ -69,3 +59,29 @@
     <% end %>
   </tr>
 </table>
+
+<script type="text/javascript">
+  var categories = [
+
+  <% @categories.each do |category| %>
+    <% percentage = 0 %>
+    <% percentage = category.expenses * 100 / expenses if expenses > 0 %>
+    <%== "{
+      id: #{category.id},
+      label: '#{category.name}',
+      color: '#{category.color}',
+      expenses: #{category.expenses.round},
+      percentage: #{(percentage).round}
+    }," %>
+  <% end %>
+
+  ];
+</script>
+
+<% unless defined? @category %>
+  <div id="pie_container"
+      class="ui-widget ui-widget-content ui-corner-all ui-state-default">
+      <h1 id="chartTitle">Expenses by category</h1>
+      <div id="pie"></div>
+    </div>
+<% end %>
