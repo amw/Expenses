@@ -14,6 +14,29 @@ function autocompleteopen(e, ui) {
   });
 }
 
+function initWheel(wheel) {
+  var input = $('#category_color');
+
+  var cw = Raphael.colorwheel(wheel[0],input.outerWidth());
+  cw.input(input[0]);
+
+  var position = input.offset();
+  position.top += input.outerHeight() + 2;
+
+  input.focus(function() {
+    wheel.show();
+    wheel.offset(position);
+  });
+
+  $(input).add(wheel).click(function(event) {
+    event.stopPropagation();
+  });
+
+  $('html').click(function() {
+    wheel.hide();
+  });
+}
+
 $(function() {
   $.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
   $('.button').button();
@@ -28,4 +51,9 @@ $(function() {
   setTimeout(function() {
     $('#notice').hide("fade", {}, 1000);
   }, 1000);
+
+  var wheel = $('#colorwheel');
+  if (wheel.length) {
+    initWheel(wheel);
+  }
 });
