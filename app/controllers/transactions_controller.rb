@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
     @transaction.date = Date.today
-    @transactions = Transaction.order "date DESC"
+    @transactions = Transaction.order "date DESC, id DESC"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +18,7 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.xml
   def create
+    init_params_value
     @transaction = Transaction.new(params[:transaction])
 
     respond_to do |format|
@@ -37,6 +38,7 @@ class TransactionsController < ApplicationController
   # PUT /transactions/1
   # PUT /transactions/1.xml
   def update
+    init_params_value
     @transaction = Transaction.find(params[:id])
 
     respond_to do |format|
@@ -59,6 +61,13 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(transactions_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  private
+  def init_params_value
+    if params[:commit] != '+'
+      params[:transaction][:value] = -params[:transaction][:value].to_f
     end
   end
 end

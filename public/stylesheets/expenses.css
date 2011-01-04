@@ -4,7 +4,7 @@ a, a:visited {
 }
 
 .content {
-  width: 600px;
+  width: 750px;
   margin: auto;
 }
 
@@ -18,11 +18,11 @@ a.button:visited {
 }
 
 #transaction_category_name {
-  width: 8em;
+  width: 30%;
 }
 
 #transaction_description {
-  width: 10em;
+  width: 60%;
 }
 
 #transaction_value {
@@ -33,10 +33,17 @@ a.button:visited {
 }
 
 #transaction_amount {
-  width: 2em;
+  width: 3em;
 }
 
 /* index */
+.transactions {
+  width: 100%;
+}
+
+.main-column {
+  width: 55%;
+}
 
 .category-style, .value-style {
   padding: 1px 3px;
@@ -57,6 +64,10 @@ a.button:visited {
   background-color: #8ac777;
 }
 
+.right {
+  text-align: right;
+}
+
 /* jquery ui fixes */
 
 .ui-icon {
@@ -68,6 +79,11 @@ a.button:visited {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   min-width: 28px;
+  font-weight: normal;
+}
+
+.ui-button.ui-priority-primary {
+  font-weight: 900;
 }
 
 .ui-button-text {
@@ -77,4 +93,9 @@ a.button:visited {
 input.ui-button {
   padding: 0px 0px !important;
   line-height: 1.4;
+}
+
+/* rails fixes */
+div.field_with_errors {
+  display: inline;
 }

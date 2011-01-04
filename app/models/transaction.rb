@@ -16,8 +16,6 @@ class Transaction < ActiveRecord::Base
               :presence => true
   validates :category_name,
               :presence => true
-  validates :type,
-              :inclusion => { :in => [Expense,Income] }
   validates :value,
               :not_zero => true
 
@@ -29,25 +27,13 @@ class Transaction < ActiveRecord::Base
     category.name if category and category.valid?
   end
 
-  def type=(new_type)
-    if value.present? and type != new_type
-      write_attribute(:value, -read_attribute(:value).to_f)
-    end
-  end
-
   def type
-    v = read_attribute :value
-    if v and v.to_f < 0 then Expense
+    if value and value.to_f < 0 then Expense
     else Income end
   end
 
-  def value=(new_value)
-    new_value = - new_value.to_f if type == Expense
-    write_attribute(:value, new_value)
-  end
-
-  def value
-    v = read_attribute(:value).to_f.abs
-    v if v != 0
+  def abs_value
+    v = read_attribute(:value).to_f
+    v.abs if v != 0
   end
 end
