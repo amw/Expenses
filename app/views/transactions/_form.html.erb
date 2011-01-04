@@ -19,8 +19,8 @@
     <%= f.text_field :category_name, :placeholder => 'Category' %>
     <%= f.text_field :description, :placeholder => 'Optional description' %>
   </td>
-  <td><%= f.text_field :value, :placeholder => '0.00',
-                       :value => @transaction.abs_value %></td>
+  <td><%= f.text_field :human_value, :placeholder => '0.00',
+                       :value => @transaction.human_value %></td>
   <td><%= f.text_field :amount, :placeholder => '1' %></td>
   <td class="buttonset">
     <%= f.submit :value => "-", :class => "ui-priority-primary", :id => nil %>

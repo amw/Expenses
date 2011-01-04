@@ -18,8 +18,8 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.xml
   def create
-    init_params_value
     @transaction = Transaction.new(params[:transaction])
+    update_expense_value
 
     respond_to do |format|
       if @transaction.save
@@ -38,8 +38,8 @@ class TransactionsController < ApplicationController
   # PUT /transactions/1
   # PUT /transactions/1.xml
   def update
-    init_params_value
     @transaction = Transaction.find(params[:id])
+    update_expense_value
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
@@ -65,9 +65,10 @@ class TransactionsController < ApplicationController
   end
 
   private
-  def init_params_value
+  def update_expense_value
     if params[:commit] != '+'
-      params[:transaction][:value] = -params[:transaction][:value].to_f
+      v = @transaction.value
+      @transaction.value = -v if v
     end
   end
 

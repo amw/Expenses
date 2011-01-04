@@ -19,6 +19,17 @@ class Transaction < ActiveRecord::Base
   validates :value,
               :not_zero => true
 
+  def human_value=(expr)
+    @exp = expr
+    v = Calc.evaluate(expr)
+    v = nil unless v.kind_of? Numeric
+    self.value = v
+  end
+
+  def human_value
+    @exp || abs_value
+  end
+
   def category_name=(name)
     self.category = Category.find_or_create_by_name(name)
   end
@@ -33,7 +44,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def abs_value
-    v = read_attribute(:value).to_f
-    v.abs if v != 0
+    v = self.value.to_f.abs
+    v if v != 0
   end
 end

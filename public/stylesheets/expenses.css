@@ -77,7 +77,7 @@ a.button:visited {
   width: 60%;
 }
 
-#transaction_value {
+#transaction_human_value {
   padding: 1px 3px;
   margin: 1px 5px;
   text-align: right;
