@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <p id="notice" class="ui-widget ui-widget-content ui-corner-all">
+    <%= notice %>
+  </p>
+<% end %>
 
 <table class="transactions">
 
