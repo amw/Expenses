@@ -16,7 +16,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+        init_index
+        render "transactions/index"
+      }
       format.xml  { render :xml => @category }
     end
   end
@@ -79,5 +82,13 @@ class CategoriesController < ApplicationController
       format.html { redirect_to(categories_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def init_index
+    @transactions = @category.transactions.order "date DESC, id DESC"
+    @transaction = Transaction.new
+    @transaction.date = Date.today
+    @transaction.category_name = @category.name
+    @categories = Category.all.select {|c| not c.transactions.empty?}
   end
 end

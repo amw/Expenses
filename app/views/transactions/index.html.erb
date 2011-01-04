@@ -14,9 +14,15 @@
   ];
 </script>
 
+<% if defined? @category %>
+  <div>
+    <%= link_to "Show all transactions", transactions_url, :class => 'button' %>
+  </div>
+<% end %>
+
 <table class="transactions">
 
-  <%= render 'form' %>
+  <%= render 'transactions/form' %>
 
   <% total = 0; income = 0; expenses = 0 %>
   <% @transactions.each do |transaction| %>
@@ -29,7 +35,7 @@
     <tr>
       <td><%= transaction.date %></td>
       <td class="main-column">
-        <%= category_label(transaction.category) + transaction.description %>
+        <%= category_link(transaction.category) + transaction.description %>
       </td>
       <td><%= value_label transaction %></td>
       <td><%= transaction.amount %></td>

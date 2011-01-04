@@ -85,7 +85,7 @@ a.button:visited {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  min-width: 28px;
+  min-width: 35px;
   font-weight: normal;
 }
 
@@ -94,16 +94,12 @@ a.button:visited {
 }
 
 .ui-button-text {
-  padding: 0px !important;
+  padding: 0px 7px !important;
 }
 
 input.ui-button {
   padding: 0px 0px !important;
   line-height: 1.4;
-}
-
-ul.ui-autocomplete {
-  padding: 10px;
 }
 
 /* rails fixes */
