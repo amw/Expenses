@@ -16,7 +16,7 @@
 
 <% if defined? @category %>
   <div>
-    <%= link_to "Show all transactions", transactions_url, :class => 'button' %>
+    <%= render 'categories/form' %>
   </div>
 <% end %>
 

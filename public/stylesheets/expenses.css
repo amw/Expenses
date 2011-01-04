@@ -19,6 +19,15 @@ a.button:visited {
   border-color: #99cc99;
 }
 
+/* category form */
+#edit_category {
+  margin-bottom: 30px;
+}
+
+#category_name {
+  width: 12em;
+}
+
 /* transaction form */
 #transaction_date {
   width: 8em;
@@ -98,7 +107,7 @@ a.button:visited {
 }
 
 input.ui-button {
-  padding: 0px 0px !important;
+  padding: 0px 7px !important;
   line-height: 1.4;
 }
 

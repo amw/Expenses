@@ -11,15 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
+  <div id="edit_category">
+    Category:
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :color %><br />
     <%= f.text_field :color %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Update', :class => 'button' %>
+    <%= link_to "Back", transactions_url, :class => 'button' %>
   </div>
 <% end %>

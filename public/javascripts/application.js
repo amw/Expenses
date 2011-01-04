@@ -26,6 +26,6 @@ $(function() {
   });
 
   setTimeout(function() {
-    $('#notice').hide("puff", { direction: "horizontal" }, 1000);
+    $('#notice').hide("fade", {}, 1000);
   }, 1000);
 });
