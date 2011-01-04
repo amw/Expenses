@@ -1,5 +1,6 @@
 development:
   adapter: mysql2
+  encoding: utf8
   database: expensesDb
   username: expensesuser
   password: testpwd
@@ -11,6 +12,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   adapter: mysql2
+  encoding: utf8
   database: 
   username: expensesuser
   password: testpwd
@@ -19,6 +21,7 @@ test:
 
 production:
   adapter: mysql2
+  encoding: utf8
   database: 
   username: expensesuser
   password: testpwd
