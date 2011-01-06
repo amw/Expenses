@@ -7,6 +7,18 @@ function categoryColor(label) {
   return 'black';
 }
 
+function searchCategories(request, callback) {
+  var result = [];
+  var re = new RegExp( '^' + request.term + '.*$' );
+  for (i in categories) {
+    if (re.test(categories[i].label)) {
+      result.push(categories[i]);
+    }
+  }
+
+  callback(result);
+}
+
 function autocompleteopen(e, ui) {
   $('.ui-autocomplete .ui-menu-item').each(function() {
     var label = $(this).find('a').html();
@@ -83,7 +95,7 @@ $(function() {
   $('#transaction_date').datepicker();
   $('#transaction_category_name').autocomplete({
     delay: 0,
-    source: categories,
+    source: searchCategories,
     open: autocompleteopen
   });
 
