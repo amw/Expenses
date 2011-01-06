@@ -41,6 +41,10 @@ function initPie() {
   var r = Raphael("pie"), values = [], legend = [], links = [], colors = [];
 
   for (i in categories) {
+    if (categories[i].percentage == 0) {
+      continue;
+    }
+
     values.push(categories[i].percentage);
     legend.push(categories[i].expenses + 'zł ' + categories[i].label);
     links.push( '/categories/' + categories[i].id );
