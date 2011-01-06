@@ -9,7 +9,7 @@ function categoryColor(label) {
 
 function searchCategories(request, callback) {
   var result = [];
-  var re = new RegExp( '^' + request.term + '.*$' );
+  var re = new RegExp( '^' + request.term + '.*$', 'i' );
   for (i in categories) {
     if (re.test(categories[i].label)) {
       result.push(categories[i]);
