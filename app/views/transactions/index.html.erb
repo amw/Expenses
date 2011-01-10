@@ -77,7 +77,7 @@
       label: '#{category.name}',
       color: '#{category.color}',
       expenses: #{category.expenses.round},
-      percentage: #{(percentage).round}
+      percentage: #{(percentage).round(4)}
     }," %>
   <% end %>
 
