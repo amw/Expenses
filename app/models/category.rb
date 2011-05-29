@@ -21,8 +21,8 @@ class Category < ActiveRecord::Base
 
   def self.random_color
     '#' +
-      (0..2).sort_by { rand }
-      .map { |i| (i*85 + rand(85)).to_s(16).rjust(2, '0') }
+      (0..2).sort_by { rand } \
+      .map { |i| (i*85 + rand(85)).to_s(16).rjust(2, '0') } \
       .join
   end
 
