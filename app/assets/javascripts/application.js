@@ -1,3 +1,14 @@
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require raphael.min
+//= require colorwheel
+//= require g.raphael.min
+//= require g.pie.min
+//= require_self
+//= require_tree .
+
+
 function categoryColor(label) {
   for (i in categories) {
     if (categories[i]['label'] == label) {

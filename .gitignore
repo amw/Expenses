@@ -4,3 +4,4 @@ config/database.yml
 log/*.log
 tmp/**/*
 tmp/*.txt
+.sass-cache/
