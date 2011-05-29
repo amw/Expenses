@@ -20,7 +20,8 @@
     <%= f.text_field :description, :placeholder => 'Optional description' %>
   </td>
   <td><%= f.text_field :human_value, :placeholder => '0.00',
-                       :value => @transaction.human_value %></td>
+                       :value => @transaction.human_value,
+                       :autocomplete => 'off'  %></td>
   <td><%= f.text_field :amount, :placeholder => '1' %></td>
   <td class="buttonset">
     <%= f.submit :value => "-", :class => "ui-priority-primary", :id => nil %>
