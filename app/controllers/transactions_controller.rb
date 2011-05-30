@@ -1,7 +1,11 @@
 class TransactionsController < ApplicationController
   def index
     @transaction = Transaction.new
-    @transaction.date = Date.today
+    if Time.now.hour > 5
+      @transaction.date = Date.today
+    else
+      @transaction.date = Date.today - 1.day
+    end
     init_index
 
     respond_to do |format|
