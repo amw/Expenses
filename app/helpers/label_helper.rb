@@ -18,7 +18,15 @@ module LabelHelper
   end
 
   def value_label(transaction)
-    value_style(transaction.type, transaction.abs_value)
+    if transaction.kind_of? Transaction
+      value_style(transaction.type, transaction.abs_value)
+    else
+      if transaction > 0
+        value_style(Transaction::Income, transaction)
+      else
+        value_style(Transaction::Expense, transaction.abs)
+      end
+    end
   end
 
   def value_style(type, value)

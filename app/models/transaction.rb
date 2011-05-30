@@ -47,4 +47,20 @@ class Transaction < ActiveRecord::Base
     v = self.value.to_f.abs
     v if v != 0
   end
+
+  def expense
+    if Expense == type
+      value.abs
+    else
+      0.0
+    end
+  end
+
+  def income
+    if Income == type
+      value
+    else
+      0.0
+    end
+  end
 end

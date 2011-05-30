@@ -42,7 +42,10 @@ class TransactionsController < ApplicationController
   end
 
   def init_index
-    @transactions = Transaction.order "date DESC, id DESC"
-    @categories = Category.all.select {|c| not c.transactions.empty?}
+    @transactions = Transaction \
+      .where('date >= ?', Date.today - 10.days) \
+      .includes(:category) \
+      .order("date DESC, id DESC")
+    @span_notice = "Showing last 10 days"
   end
 end

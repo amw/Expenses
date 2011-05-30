@@ -14,14 +14,7 @@
 
   <%= render 'transactions/form' %>
 
-  <% total = 0; income = 0; expenses = 0 %>
   <% @transactions.each do |transaction| %>
-    <% total += transaction.value %>
-    <% if transaction.type == Transaction::Expense %>
-      <% expenses += transaction.abs_value %>
-    <% else %>
-      <% income += transaction.value %>
-    <% end %>
     <tr>
       <td><%= transaction.date %></td>
       <td class="main-column">
@@ -42,52 +35,26 @@
   <tr>
     <td></td>
     <td class="right">Total income:</td>
-    <td><%= value_style Transaction::Income, income %></td>
+    <td>
+      <%= value_style Transaction::Income, @transactions.map(&:income).sum %>
+    </td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td class="right">Total expenses:</td>
-    <td><%= value_style Transaction::Expense, expenses %></td>
+    <td>
+      <%= value_style Transaction::Expense, @transactions.map(&:expense).sum %>
+    </td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td class="right">Total:</td>
-    <% if total >= 0 %>
-      <td><%= value_style Transaction::Income, total %></td>
-    <% else %>
-      <td><%= value_style Transaction::Expense, total.abs %></td>
-    <% end %>
+    <td><%= value_label @transactions.map(&:value).sum %></td>
     <td></td>
     <td></td>
   </tr>
 </table>
-
-<script type="text/javascript">
-  var categories = [
-
-  <% @categories.each do |category| %>
-    <% percentage = 0 %>
-    <% percentage = category.expenses * 100 / expenses if expenses > 0 %>
-    <%== "{
-      id: #{category.id},
-      label: '#{category.name}',
-      color: '#{category.color}',
-      expenses: #{category.expenses.round},
-      percentage: #{(percentage).round(4)}
-    }," %>
-  <% end %>
-
-  ];
-</script>
-
-<% unless defined? @category %>
-  <div id="pie_container"
-      class="ui-widget ui-widget-content ui-corner-all ui-state-default">
-      <h1 id="chartTitle">Expenses by category</h1>
-      <div id="pie"></div>
-    </div>
-<% end %>
