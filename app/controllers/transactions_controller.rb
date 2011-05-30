@@ -43,9 +43,9 @@ class TransactionsController < ApplicationController
 
   def init_index
     @transactions = Transaction \
-      .where('date >= ?', Date.today - 10.days) \
+      #.where('date >= ?', Date.today - 10.days) \
       .includes(:category) \
       .order("date DESC, id DESC")
-    @span_notice = "Showing last 10 days"
+    #@span_notice = "Showing last 10 days"
   end
 end
