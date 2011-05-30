@@ -3,7 +3,7 @@ body {
   height: 100%;
 }
 
-a, a:visited {
+a, a:visited, a:focus, a:hover {
   color: #333;
   text-decoration: none;
 }
