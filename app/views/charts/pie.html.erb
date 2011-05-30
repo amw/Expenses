@@ -1,0 +1,73 @@
+<div class="toolbar ui-widget-header ui-corner-all">
+  <span class="ui-buttonset">
+    <%= navigation_button \
+          text: "Income",
+          path: pie_charts_path(params.merge({income: true})),
+          class: 'ui-corner-left',
+          selected: params[:income] %>
+    <%= navigation_button \
+          text: "Expenses",
+          path: pie_charts_path(params.except :income),
+          class: 'ui-corner-right',
+          selected: params[:income].blank? %>
+  </span>
+  <span class="ui-buttonset">
+    <%= navigation_button \
+          text: "Overall",
+          path: pie_charts_path(params.merge({all: true}).except(:s, :e)),
+          class: 'ui-corner-left',
+          selected: params[:all] %>
+    <% (0..5).reverse_each do |c| %>
+      <% date = Date.today - c.months;
+         s = date.beginning_of_month;
+         e = date.end_of_month %>
+      <%= navigation_button \
+            text: l(date, format: '%B'),
+            path: pie_charts_path(params.merge({s: s, e: e}).except :all),
+            class: ('ui-corner-right' if c == 0),
+              selected: (@start_date == s && @end_date == e) %>
+    <% end %>
+  </span>
+</div>
+
+<script type="text/javascript">
+  var categories = <%==
+    @categories.map {|category|
+      {
+        id: category.id,
+        label: category.name,
+        color: "#{category.color}",
+        expenses: @values[category.id].round,
+        percentage: @percentages[category.id].round(4)
+      }
+    }.to_json
+  %>
+</script>
+
+<div id="pie_container"
+    class="ui-widget ui-widget-content ui-corner-all ui-state-default">
+    <h1 id="chartTitle">
+      <%= if params[:income] then 'Income' else 'Expenses' end %>
+      by category
+    </h1>
+  <div id="pie"></div>
+</div>
+
+<table>
+  <tr>
+    <td class="right">Total income:</td>
+    <td>
+      <%= value_style Transaction::Income, @transactions.map(&:income).sum %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right">Total expenses:</td>
+    <td>
+      <%= value_style Transaction::Expense, @transactions.map(&:expense).sum %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right">Total:</td>
+    <td><%= value_label @transactions.map(&:value).sum %></td>
+  </tr>
+</table>

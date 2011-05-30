@@ -10,6 +10,12 @@
   </div>
 <% end %>
 
+<% if @span_notice %>
+  <div id="span_notice" class="ui-state-highlight ui-corner-all">
+    <%= @span_notice %>
+  </div>
+<% end %>
+
 <table class="transactions">
 
   <%= render 'transactions/form' %>
