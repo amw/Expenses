@@ -33,6 +33,7 @@ a.button:visited {
   text-align: center;
   font-size: 1.3em;
   margin: 10px 0px;
+  color: inherit;
 }
 
 #pie {
@@ -94,18 +95,22 @@ a.button:visited {
 }
 
 .main-column {
-  width: 55%;
+  min-width: 55%;
 }
 
 .category-style, .value-style {
+  display: inline-block;
   padding: 1px 3px;
   margin: 1px 5px;
 }
 
 .value-style {
-  display: inline-block;
-  text-align: right;
   min-width: 85px;
+  text-align: right;
+}
+
+td.buttonset {
+  width: 75px !important;
 }
 
 .expense {
@@ -151,3 +156,6 @@ input.ui-button {
 div.field_with_errors {
   display: inline;
 }
+
+/* blueprint fixes */
+tbody tr:nth-child(even) td, tbody tr.even td {background: none;}
