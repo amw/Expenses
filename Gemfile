@@ -14,6 +14,8 @@ group :production do
   gem 'pg'
 end
 
+gem 'cancan'
+gem 'inherited_resources'
 gem 'jquery-rails'
 gem 'calc'
 
