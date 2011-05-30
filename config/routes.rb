@@ -9,5 +9,5 @@ Expenses::Application.routes.draw do
     end
   end
 
-  root :to => "transactions#index"
+  match '/' => redirect("/transactions")
 end
