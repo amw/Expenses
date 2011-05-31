@@ -19,4 +19,8 @@ module ApplicationHelper
       "<span class='ui-button-text'>#{text}</span>".html_safe,
       path, class: classes
   end
+
+  def all_categories
+    Category.accessible_by current_ability, :show
+  end
 end

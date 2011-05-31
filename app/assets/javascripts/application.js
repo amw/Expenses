@@ -10,9 +10,9 @@
 
 
 function categoryColor(label) {
-  for (i in categories) {
-    if (categories[i]['label'] == label) {
-      return categories[i]['color'];
+  for (i in all_categories) {
+    if (all_categories[i]['label'] == label) {
+      return all_categories[i]['color'];
     }
   }
   return 'black';
@@ -21,9 +21,9 @@ function categoryColor(label) {
 function searchCategories(request, callback) {
   var result = [];
   var re = new RegExp( '^' + request.term + '.*$', 'i' );
-  for (i in categories) {
-    if (re.test(categories[i].label)) {
-      result.push(categories[i]);
+  for (i in all_categories) {
+    if (re.test(all_categories[i].label)) {
+      result.push(all_categories[i]);
     }
   }
 
@@ -63,15 +63,15 @@ function initWheel(wheel) {
 function initPie() {
   var r = Raphael("pie"), values = [], legend = [], links = [], colors = [];
 
-  for (i in categories) {
-    if (categories[i].percentage == 0) {
+  for (i in pie_categories) {
+    if (pie_categories[i].percentage == 0) {
       continue;
     }
 
-    values.push(categories[i].percentage);
-    legend.push(categories[i].expenses + 'zł ' + categories[i].label);
-    links.push( '/categories/' + categories[i].id );
-    colors.push( categories[i].color );
+    values.push(pie_categories[i].percentage);
+    legend.push(pie_categories[i].expenses + 'zł ' + pie_categories[i].label);
+    links.push( '/categories/' + pie_categories[i].id );
+    colors.push( pie_categories[i].color );
   }
 
   r.g.txtattr.font = "0.9em 'Fontin Sans', Fontin-Sans, sans-serif";

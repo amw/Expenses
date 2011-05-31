@@ -31,12 +31,12 @@
 </div>
 
 <script type="text/javascript">
-  var categories = <%==
+  var pie_categories = <%==
     @categories.map {|category|
       {
         id: category.id,
         label: category.name,
-        color: "#{category.color}",
+        color: category.color,
         expenses: @values[category.id].round,
         percentage: @percentages[category.id].round(4)
       }

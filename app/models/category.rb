@@ -13,10 +13,11 @@ class Category < ActiveRecord::Base
   before_validation :init_color
 
   def expenses
-    @expenses ||= transactions.all.sum { |t|
-      if t.type == Transaction::Expense then t.value.abs
-      else 0 end
-    }
+    @expenses ||= transactions.map(&:expense).sum
+  end
+
+  def label
+    name
   end
 
   def self.random_color
