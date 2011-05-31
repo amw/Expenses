@@ -4,7 +4,7 @@
 //= require raphael.min
 //= require colorwheel
 //= require g.raphael.min
-//= require g.pie.min
+//= require g.pie
 //= require_self
 //= require_tree .
 
