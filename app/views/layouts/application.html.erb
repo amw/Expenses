@@ -8,8 +8,8 @@
   <![endif]-->
   <%= javascript_include_tag "application" %>
   <script type="text/javascript">
-    var all_categories = <%== all_categories.map {|c|
-      {id: c.id, label: c.label, color: c.color} }.to_json %>;
+    var all_categories = <%== Hash[ all_categories.map {|c|
+      [c.id, {id: c.id, label: c.label, color: c.color}] }].to_json %>;
   </script>
   <%= csrf_meta_tags %>
 </head>
