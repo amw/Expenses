@@ -154,6 +154,14 @@ td.buttonset {
   display: inline-block;
 }
 
+.ui-buttonset .ui-button {
+  border-right-width: 0;
+}
+
+.ui-buttonset .ui-button:last-child {
+  border-right-width: 1px;
+}
+
 .ui-button {
   @include border-box;
   min-width: 35px;
