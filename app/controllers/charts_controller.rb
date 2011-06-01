@@ -23,6 +23,31 @@ class ChartsController < ApplicationController
       @percentages[cat_id] = value * 100 / total if value > 0
     end if total > 0
   end
+
+  def trends
+    @months = {}
+    date = @start_date
+    id = 0
+    while date < @end_date
+      @months[l(date, format: '%Y-%m')] = {
+        id: id,
+        name: l(date, format: '%b')
+      }
+      id += 1
+      date += 1.month
+    end
+
+    @values = Hash.new { |h, k| h[k] = Array.new @months.size, 0 }
+    @categories_totals = Hash.new 0
+    @transactions.each do |t|
+      month = l(t.date, format: '%Y-%m')
+      @values[t.category_id][@months[month][:id]] -= t.value
+      @categories_totals[t.category_id] -= t.value
+    end
+
+    @categories = @transactions.map(&:category).uniq.sort_by do |c|
+      -@categories_totals[c.id]
+    end
   end
 
   private
@@ -34,9 +59,9 @@ class ChartsController < ApplicationController
     return if params[:all]
 
     @start_date =
-      params[:s] && Date.parse(params[:s]) || Date.today.beginning_of_month
+      params[:s] && Date.parse(params[:s]) || default_start_date
     @end_date =
-      params[:e] && Date.parse(params[:e]) || Date.today.end_of_month
+      params[:e] && Date.parse(params[:e]) || default_end_date
 
     @transactions = @transactions \
       .where('date BETWEEN ? AND ?', @start_date, @end_date)
@@ -44,5 +69,16 @@ class ChartsController < ApplicationController
 
   def include_category
     @transactions = @transactions.includes :category
+  end
+
+  def default_start_date
+    case action_name
+    when 'pie' then Date.today.beginning_of_month
+    when 'trends' then Date.today.beginning_of_month - 5.months
+    end
+  end
+
+  def default_end_date
+    Date.today.end_of_month
   end
 end

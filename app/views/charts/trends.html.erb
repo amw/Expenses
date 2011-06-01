@@ -1,0 +1,19 @@
+<script type="text/javascript">
+  var trends_months = <%== @months.to_json %>;
+  var trends_values = <%== @values.to_json %>;
+</script>
+
+<div id="trends_container"
+    class="ui-widget ui-widget-content ui-corner-all ui-state-default
+          ui-helper-clearfix">
+  <h1 id="chartTitle">
+    <%= if params[:income] then 'Income' else 'Expenses' end %>
+    trends
+  </h1>
+  <div id="trends_legend">
+    <% @categories.each_with_index do |category, index| %>
+      <%= category_label(category, index < 8 ? 'selected' : '') %>
+    <% end %>
+  </div>
+  <div id="trends"></div>
+</div>

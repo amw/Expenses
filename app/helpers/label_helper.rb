@@ -1,12 +1,11 @@
 # encoding: utf-8
 
 module LabelHelper
-  def category_label(category)
-    klass += ' ' if klass.present?
-    ('<span class="' + klass + 'category-style ui-corner-all ' +
-        'cat-' + category.id.to_s + '" ' +
-      'style="background-color: ' + category.color + ';">' +
-      text + '</span>').html_safe
+  def category_label category, klass = ''
+    ("<span class='category category-style ui-corner-all " +
+        "cat-#{category.id.to_s} #{klass}' " +
+      "style='background-color: #{category.color};' " +
+      "data-category-id='#{category.id}'>#{category.name}</span>").html_safe
   end
 
   def category_link(category)
