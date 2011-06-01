@@ -53,8 +53,6 @@ $ ->
 
     chart.symbols.attr r: 4
 
-    console.log chart
-
     i = 0
     chart.eachColumn ->
       t = r.text @x, 530, months[i++]
