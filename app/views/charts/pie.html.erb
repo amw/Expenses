@@ -37,7 +37,7 @@
         id: category.id,
         label: category.name,
         color: category.color,
-        expenses: @values[category.id].round,
+        value: @values[category.id].round,
         percentage: @percentages[category.id].round(4)
       }
     }.to_json

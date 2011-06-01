@@ -4,23 +4,25 @@ class ChartsController < ApplicationController
   before_filter :include_category
 
   def pie
-    @total = if params[:income]
-      @transactions.map(&:income).sum
-    else
-      @transactions.map(&:expense).sum
-    end
-
     @categories = @transactions.map(&:category).uniq
 
     @values = Hash.new 0
     @transactions.each do |t|
-      @values[t.category_id] += params[:income] ? t.income : t.expense
+      @values[t.category_id] += params[:income] ? t.value : -t.value
     end
+
+    @categories.delete_if {|category| @values[category.id] <= 0}
+
+    total = @transactions.select {|t|
+      @categories.include? t.category
+    }.map(&:value).sum
+    total = -total unless params[:income]
 
     @percentages = Hash.new 0
     @values.each_pair do |cat_id, value|
-      @percentages[cat_id] = value * 100 / @total if value > 0
-    end if @total > 0
+      @percentages[cat_id] = value * 100 / total if value > 0
+    end if total > 0
+  end
   end
 
   private
