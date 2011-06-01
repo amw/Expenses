@@ -11,6 +11,8 @@
     trends
   </h1>
   <div id="trends_legend">
+    <span class='category category-style ui-corner-all cat-rollup selected'
+        style='background-color: #000;' data-category-id='rollup'>Roll up</span>
     <% @categories.each_with_index do |category, index| %>
       <%= category_label(category, index < 8 ? 'selected' : '') %>
     <% end %>

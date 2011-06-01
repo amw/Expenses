@@ -45,6 +45,13 @@ class ChartsController < ApplicationController
       @categories_totals[t.category_id] -= t.value
     end
 
+    # round each sum
+    @values.each_pair do |cat_id,values|
+      values.each_with_index do |value,idx|
+        @values[cat_id][idx] = value.round
+      end
+    end
+
     @categories = @transactions.map(&:category).uniq.sort_by do |c|
       -@categories_totals[c.id]
     end

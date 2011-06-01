@@ -1,24 +1,38 @@
 $ ->
   return unless $('#trends').size()
 
-  chart = null
-
   drawChart = ->
     selected_categories = $('#trends_legend span.selected').map ->
       $(this).data 'category-id'
+
+    # return if there are no categories to draw
+    if 'rollup' in selected_categories
+      return if selected_categories.length < 2
+    else if selected_categories.length < 1
+      return
 
     colors     = []
     columns    = []
     values     = []
     categories = []
     months     = (month.name for id, month of trends_months)
+    _columns   = (i for i in [0...months.length])
+    rollup      = (0 for i in [0...months.length])
 
     for id, val of trends_values
       continue unless parseInt(id) in selected_categories
       categories.push id
       values.push val
       colors.push all_categories[id]['color']
-      columns.push [0,1,2,3,4,5]
+      columns.push _columns
+      for value, i in val
+        rollup[i] += value
+
+    if selected_categories.length > 2 and 'rollup' in selected_categories
+      categories.push "rollup"
+      values.push rollup
+      colors.push '#000'
+      columns.push _columns
 
     r = Raphael "trends"
 
