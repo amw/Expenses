@@ -123,6 +123,10 @@ td.buttonset {
   text-align: right;
 }
 
+.notice {
+  margin-top: 2em;
+}
+
 /* jquery ui fixes */
 
 .ui-icon {
@@ -163,3 +167,5 @@ div.field_with_errors {
 
 /* blueprint fixes */
 tbody tr:nth-child(even) td, tbody tr.even td {background: none;}
+
+.error, .alert, .notice, .success, .info {border-width: 1px;}

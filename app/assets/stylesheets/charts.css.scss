@@ -48,6 +48,6 @@
 .toolbar {
   @include border-box;
   width: 700px;
-  margin: auto;
+  margin: 0 auto 2em auto;
   padding: 0.4em 1em;
 }
