@@ -3,7 +3,7 @@
 #= require jquery-ui
 #= require raphael.min
 #= require colorwheel
-#= require g.raphael.min
+#= require g.raphael
 #= require g.line
 #= require g.pie
 #= require_self
