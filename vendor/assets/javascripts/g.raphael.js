@@ -226,11 +226,10 @@
         return this.path(p).attr({fill: "#000", stroke: "none"}).insertBefore(set.node ? set : set[0]);
     };
     Raphael.fn.g.popup = function (x, y, text, dir, size) {
-        dir = dir == null ? 2 : dir > 3 ? 3 : dir;
+        dir = dir == null ? 2 : dir > 7 ? 7 : dir;
         size = size || 5;
         text = text || "$9.99";
-        var res = this.set(),
-            d = 3;
+        var res = this.set();
         res.push(this.path().attr({fill: "#000", stroke: "#000"}));
         res.push(this.text(x, y, text).attr(this.g.txtattr).attr({fill: "#fff", "font-family": "Helvetica, Arial"}));
         res.update = function (X, Y, withAnimation) {
@@ -239,14 +238,21 @@
             var bb = this[1].getBBox(),
                 w = bb.width / 2,
                 h = bb.height / 2,
-                dx = [0, w + size * 2, 0, -w - size * 2],
-                dy = [-h * 2 - size * 3, -h - size, 0, -h - size],
-                p = ["M", X - dx[dir], Y - dy[dir], "l", -size, (dir == 2) * -size, -mmax(w - size, 0), 0, "a", size, size, 0, 0, 1, -size, -size,
-                    "l", 0, -mmax(h - size, 0), (dir == 3) * -size, -size, (dir == 3) * size, -size, 0, -mmax(h - size, 0), "a", size, size, 0, 0, 1, size, -size,
-                    "l", mmax(w - size, 0), 0, size, !dir * -size, size, !dir * size, mmax(w - size, 0), 0, "a", size, size, 0, 0, 1, size, size,
-                    "l", 0, mmax(h - size, 0), (dir == 1) * size, size, (dir == 1) * -size, size, 0, mmax(h - size, 0), "a", size, size, 0, 0, 1, -size, size,
-                    "l", -mmax(w - size, 0), 0, "z"].join(","),
-                xy = [{x: X, y: Y + size * 2 + h}, {x: X - size * 2 - w, y: Y}, {x: X, y: Y - size * 2 - h}, {x: X + size * 2 + w, y: Y}][dir];
+                dx = [0, w + size * 2, 0, -w - size * 2, 0, 0, 0, 0],
+                dy = [-h * 2 - size * 3, -h - size, 0, -h - size, -h * 2 - size * 3, 0, 0, -h * 2 - size * 3],
+                p = ["M", X - dx[dir], Y - dy[dir],
+                     "l", -size, (dir == 2 || dir == 5 || dir == 6) * -size, (dir != 4 && dir != 5) * -mmax(w - size, 0), 0, (dir == 6 || dir == 7) * -mmax(w - size, 0), 0,
+                     "a", size, size, 0, 0, 1, -size, -size,
+                     "l", 0, -mmax(h - size, 0), (dir == 3) * -size, -size, (dir == 3) * size, -size, 0, -mmax(h - size, 0),
+                     "a", size, size, 0, 0, 1, size, -size,
+                     "l", (dir != 4) * mmax(w - size, 0), 0, (dir == 7) * mmax(w - size, 0), 0, size, (!dir || dir == 4 || dir == 7) * -size, size, (!dir || dir == 4 || dir == 7) * size, (dir != 7) * mmax(w - size, 0), 0, (dir == 4) * mmax(w - size, 0), 0,
+                     "a", size, size, 0, 0, 1, size, size,
+                     "l", 0, mmax(h - size, 0), (dir == 1) * size, size, (dir == 1) * -size, size, 0, mmax(h - size, 0),
+                     "a", size, size, 0, 0, 1, -size, size,
+                     "l", (dir != 6 && dir != 7) * -mmax(w - size, 0), 0, (dir == 4 || dir == 5) * -mmax(w - size, 0), 0,
+                     "z"].join(","),
+                xy = [{x: X, y: Y + size * 2 + h}, {x: X - size * 2 - w, y: Y}, {x: X, y: Y - size * 2 - h}, {x: X + size * 2 + w, y: Y},
+                      {x: X + w - size, y: Y + size * 2 + h}, {x: X + w - size, y: Y - size * 2 - h}, {x: X - w + size, y: Y - size * 2 - h}, {x: X - w + size, y: Y + size * 2 + h}][dir];
             xy.path = p;
             if (withAnimation) {
                 this.animate(xy, 500, ">");
