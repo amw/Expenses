@@ -15,25 +15,25 @@ $ ->
     colors.push category.color
 
   r = Raphael "pie"
-  r.g.txtattr.font = "0.9em 'Fontin Sans', Fontin-Sans, sans-serif"
 
-  pie = r.g.piechart 350, 175, 140, values,
+  pie = r.g.piechart 470, 175, 150, values,
     legend: legend,
     legendpos: "west",
     href: links,
     colors: colors
-    centered: true
 
-  pie.hover \
+  .hover \
     ->
       @sector.stop()
       @sector.scale(1.1, 1.1, @cx, @cy)
       if @label
         @label[0].stop()
         @label[0].scale(1.5)
-        @label[1].attr({"font-weight": 800})
+        @label[1].attr({"font-weight": 300})
     , ->
       @sector.animate({scale: [1, 1, @cx, @cy]}, 500, "bounce")
       if (@label)
         @label[0].animate({scale: 1}, 500, "bounce")
-        @label[1].attr({"font-weight": 400})
+        @label[1].attr({"font-weight": 100})
+
+  pie.labels.translate -100, 0
