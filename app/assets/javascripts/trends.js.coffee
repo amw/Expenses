@@ -11,6 +11,7 @@ $ ->
     columns    = []
     values     = []
     categories = []
+    months     = (month.name for id, month of trends_months)
 
     for id, val of trends_values
       continue unless parseInt(id) in selected_categories
@@ -20,8 +21,9 @@ $ ->
       columns.push [0,1,2,3,4,5]
 
     r = Raphael "trends"
+
     chart = r.g.linechart \
-      30, 0, 500, 550,
+      30, 0, 500, 530,
       columns,
       values,
         colors: colors,
@@ -50,6 +52,13 @@ $ ->
         return categories[id] if line == test_line
 
     chart.symbols.attr r: 4
+
+    console.log chart
+
+    i = 0
+    chart.eachColumn ->
+      t = r.text @x, 530, months[i++]
+      t.attr Raphael.fn.g.txtattr
 
   drawChart()
 
