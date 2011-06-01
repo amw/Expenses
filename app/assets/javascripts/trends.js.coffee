@@ -38,14 +38,14 @@ $ ->
         @tag = r.g.tag(@x, @y, @value, 190, 10)
           .insertBefore(this)
           .attr([{fill: "#fff"}, {fill: @symbol.attr("fill")}])
-        @line.animate 'stroke-width': 4, 400, '>'
-        @symbol.animate r: 8, 400, '>'
-        $(".cat-#{category_id(@line)}").animate width: '90%', 200
+        @line.stop().animate 'stroke-width': 4, 300, '>'
+        @symbol.stop().animate r: 8, 300, '>'
+        $(".cat-#{category_id(@line)}").stop().animate width: '90%', 300
       , ->
         @tag && @tag.remove()
-        @line.animate 'stroke-width': 2, 400, '>'
-        @symbol.animate r: 4, 400, '>'
-        $(".cat-#{category_id(@line)}").animate width: '80%', 200
+        @line.stop().animate 'stroke-width': 2, 300, '>'
+        @symbol.stop().animate r: 4, 300, '>'
+        $(".cat-#{category_id(@line)}").stop().animate width: '80%', 300
 
     category_id = (line) ->
       for id, test_line of chart.lines
