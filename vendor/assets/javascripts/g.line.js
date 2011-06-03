@@ -186,9 +186,8 @@ Raphael.fn.g.linechart = function (x, y, width, height, valuesx, valuesy, opts) 
         for (var i = 0, ii = valuesy.length; i < ii; i++) {
             for (var j = 0, jj = valuesy[i].length; j < jj; j++) {
                 var X = x + gutter + ((valuesx[i] || valuesx[0])[j] - minx) * kx,
-                    nearX = x + gutter + ((valuesx[i] || valuesx[0])[j ? j - 1 : 1] - minx) * kx,
                     Y = y + height - gutter - (valuesy[i][j] - miny) * ky;
-                f ? (C = {}) : cvrs.push(C = that.circle(X, Y, Math.abs(nearX - X) / 2).attr({stroke: "none", fill: "#000", opacity: 0}));
+                f ? (C = {}) : cvrs.push(C = that.circle(X, Y, 10).attr({stroke: "none", fill: "#000", opacity: 0}));
                 C.x = X;
                 C.y = Y;
                 C.value = valuesy[i][j];
