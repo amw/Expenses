@@ -28,12 +28,13 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def update
+  private
+  def update_resource object, attributes
+    @transaction.attributes = attributes
     update_expense_value
-    update!
+    @transaction.save
   end
 
-  private
   def update_expense_value
     if params[:commit] != '+'
       v = @transaction.value
