@@ -10,7 +10,7 @@
 #= require_tree .
 
 $ ->
-  $.datepicker.setDefaults dateFormat: 'yy-mm-dd'
+  $.datepicker.setDefaults dateFormat: 'yy-mm-dd', firstDay: 1
   $('.button').button()
   $('.buttonset').buttonset()
   $('#transaction_date').datepicker()
