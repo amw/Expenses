@@ -9,6 +9,7 @@ group :assets do
   gem 'sass-rails', '3.1.4'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem "asset_sync"
 end
 
 gem 'jquery-rails'
@@ -19,4 +20,3 @@ gem 'pg', group: [:heroku]
 gem 'cancan'
 gem 'inherited_resources'
 gem 'calc'
-

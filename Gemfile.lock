@@ -30,6 +30,9 @@ GEM
     activesupport (3.1.4)
       multi_json (~> 1.0)
     arel (2.2.3)
+    asset_sync (0.3.2)
+      activemodel
+      fog
     builder (3.0.0)
     calc (1.0.0)
     cancan (1.6.7)
@@ -41,8 +44,20 @@ GEM
       execjs
     coffee-script-source (1.3.1)
     erubis (2.7.0)
+    excon (0.13.4)
     execjs (1.3.0)
       multi_json (~> 1.0)
+    fog (1.3.1)
+      builder
+      excon (~> 0.13.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.1)
     has_scope (0.5.1)
     hike (1.2.1)
     i18n (0.6.0)
@@ -60,6 +75,10 @@ GEM
     mime-types (1.18)
     multi_json (1.3.2)
     mysql2 (0.3.11)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.3.0)
+    nokogiri (1.5.2)
     pg (0.13.2)
     polyglot (0.3.3)
     rack (1.3.6)
@@ -91,6 +110,7 @@ GEM
       json (~> 1.4)
     responders (0.9.1)
       railties (~> 3.1)
+    ruby-hmac (0.4.0)
     sass (3.1.16)
     sass-rails (3.1.4)
       actionpack (~> 3.1.0)
@@ -117,6 +137,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  asset_sync
   calc
   cancan
   coffee-rails
